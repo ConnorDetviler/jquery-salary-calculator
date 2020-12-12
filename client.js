@@ -37,7 +37,9 @@ $(readyNow);
 
 function readyNow() {
     documentReady();
-}
+} // end readyNow
+
+
 
 function documentReady() {
     printAllEmployees(employees);
@@ -46,7 +48,9 @@ function documentReady() {
         e.preventDefault(); //found this solution online. the button was reloading the page. This prevents that.
         addNewEmployee();
     });
-}
+} // end documentReady
+
+
 
 function displayEmployee(emp) {
     //creates table data tags with the values of the properties of the employee and appends them to the table row
@@ -58,9 +62,11 @@ function displayEmployee(emp) {
     $(`#${emp.employeeRowID}`).append(`<td>$${emp.annualSalary}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td><button class="emp-delete-button" data-index=${emp.index}>Delete</button></td>`); 
     //data given to delete button contains the index number of it's corrosponding employee in the array
-}
+} // end display Employee
 
-function printAllEmployees(array) {
+
+
+function printAllEmployees(array) { // runs displayEmployee for each employee in the array. Calculates monthly costs. Creates delete button event handler
     $('#employee-table').empty();
 
     let yearlySpent = 0;
@@ -78,17 +84,19 @@ function printAllEmployees(array) {
 
     $('#spent-monthly').text('');
     $('#spent-monthly').text(Math.round(monthlySpent));
-
+    // highlights monthly expenses in red they exceed $20,000
     if(monthlySpent > 20000) {
         $('#monthly-expense-text').addClass('expensive');
     } else {
         $('#monthly-expense-text').removeClass('expensive');
     }
-
+    // creates event listener for all delete buttons on page
     $('.emp-delete-button').click(function() {
-        deleteEmployee(this.dataset.index);
+        deleteEmployee(this.dataset.index); // runs deleteEmployee function according to index data stored on the delete button
     });
-}
+} // end printAllEmployees
+
+
 
 function addNewEmployee() {
     let newEmp = {
@@ -99,9 +107,9 @@ function addNewEmployee() {
         annualSalary: $('#salary-in').val(),
         employeeRowID: $('#first-name-in').val() + $('#last-name-in').val() + $('#id-in').val() //generates ID for employee's table row
     }
-
+    // pushes new employee object to array
     employees.push(newEmp);
-
+    // clears all inputs
     $('#first-name-in').val('');
     $('#last-name-in').val('');
     $('#id-in').val('');
@@ -109,9 +117,11 @@ function addNewEmployee() {
     $('#salary-in').val('');
 
     printAllEmployees(employees);
-}
+} // end addNewEmployee
+
+
 
 function deleteEmployee(index) {
     employees.splice(index, 1);
     printAllEmployees(employees);
-}
+} //end deleteEmployee
