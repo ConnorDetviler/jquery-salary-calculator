@@ -29,7 +29,7 @@ function readyNow() {
 }
 
 function documentReady() {
-    displayEmployee(employees[2]);
+    printAllEmployees(employees);
 }
 
 function displayEmployee(emp) {
@@ -42,4 +42,10 @@ function displayEmployee(emp) {
     $(`#${employeeRowID}`).append(`<td>${emp.title}</td>`);
     $(`#${employeeRowID}`).append(`<td>${emp.annualSalary}</td>`);
     $(`#${employeeRowID}`).append(`<td><button id="delete-${employeeRowID}">Delete</button></td>`);
+}
+
+function printAllEmployees(array) {
+    for (let i = 0; i < array.length; i++) {
+        displayEmployee(array[i]);
+    }
 }
