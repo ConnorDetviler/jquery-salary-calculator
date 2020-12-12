@@ -1,11 +1,11 @@
 employees = [
-    {
-        firstName: 'Jen',
-        lastName: 'Barber',
-        id: 4521,
-        title: 'Team Lead',
-        annualSalary: 80000
-    },
+    // {
+    //     firstName: 'Jen',
+    //     lastName: 'Barber',
+    //     id: 4521,
+    //     title: 'Team Lead',
+    //     annualSalary: 80000
+    // },
     {
         firstName: 'Maurice',
         lastName: 'Moss',
@@ -45,7 +45,14 @@ function displayEmployee(emp) {
 }
 
 function printAllEmployees(array) {
+    let yearlySpent = 0;
     for (let i = 0; i < array.length; i++) {
         displayEmployee(array[i]);
+
+        yearlySpent += array[i].annualSalary;
     }
+    // console.log('yearly spent:' + yearlySpent);
+    let monthlySpent = yearlySpent / 12;
+
+    $('#spentMonthly').text(Math.round(monthlySpent)); //stretch: round to nearest cent instead
 }
