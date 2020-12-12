@@ -77,19 +77,20 @@ function printAllEmployees(array) {
     monthlySpent = yearlySpent / 12;
 
     $('#spent-monthly').text('');
-    $('#spent-monthly').text(Math.round(monthlySpent)); //stretch: round to nearest cent instead
+    $('#spent-monthly').text(Math.round(monthlySpent));
 
     if(monthlySpent > 20000) {
         $('#monthly-expense-text').addClass('expensive');
+    } else {
+        $('#monthly-expense-text').removeClass('expensive');
     }
 
     $('.emp-delete-button').click(function() {
-        deleteEmployee(this.id.substring(1)); //substring removes letter at beginning that is required for html id attribute
+        deleteEmployee(this.id.substring(1)); //substring removes letter at beginning that is there because I don't like attributes that are just a single digit number
     });
 }
 
 function addNewEmployee() {
-    console.log('adding new employee')
     let newEmp = {
         firstName: $('#first-name-in').val(),
         lastName: $('#last-name-in').val(),
