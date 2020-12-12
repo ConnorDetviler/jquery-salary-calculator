@@ -1,32 +1,32 @@
 let employees = [
-    {
-        firstName: 'Jen',
-        lastName: 'Barber',
-        id: '4521',
-        title: 'Team Lead',
-        annualSalary: '80000'
-    },
-    {
-        firstName: 'Maurice',
-        lastName: 'Moss',
-        id: '8724',
-        title: 'Support Team',
-        annualSalary: '58000'
-    },
-    {
-        firstName: 'Roy',
-        lastName: 'Smith',
-        id: '9623',
-        title: 'Quality Assurance',
-        annualSalary: '48000'
-    },
-    {
-        firstName: 'Harry',
-        lastName: 'Jenson',
-        id: '4973',
-        title: 'Team Lead',
-        annualSalary: '80000'
-    }
+    // {
+    //     firstName: 'Jen',
+    //     lastName: 'Barber',
+    //     id: '4521',
+    //     title: 'Team Lead',
+    //     annualSalary: '80000'
+    // },
+    // {
+    //     firstName: 'Maurice',
+    //     lastName: 'Moss',
+    //     id: '8724',
+    //     title: 'Support Team',
+    //     annualSalary: '58000'
+    // },
+    // {
+    //     firstName: 'Roy',
+    //     lastName: 'Smith',
+    //     id: '9623',
+    //     title: 'Quality Assurance',
+    //     annualSalary: '48000'
+    // },
+    // {
+    //     firstName: 'Harry',
+    //     lastName: 'Jenson',
+    //     id: '4973',
+    //     title: 'Team Lead',
+    //     annualSalary: '80000'
+    // }
 ];
 
 // let yearlySpent = 0;
@@ -48,15 +48,18 @@ function documentReady() {
 }
 
 function displayEmployee(emp) {
-    employeeRowID = emp.firstName + emp.lastName + emp.id.toString();
 
-    $('#employee-table').append(`<tr id="${employeeRowID}"></tr>`)
-    $(`#${employeeRowID}`).append(`<td>${emp.firstName}</td>`);
-    $(`#${employeeRowID}`).append(`<td>${emp.lastName}</td>`);
-    $(`#${employeeRowID}`).append(`<td>${emp.id}</td>`);
-    $(`#${employeeRowID}`).append(`<td>${emp.title}</td>`);
-    $(`#${employeeRowID}`).append(`<td>$${emp.annualSalary}</td>`);
-    $(`#${employeeRowID}`).append(`<td><button id="delete-${employeeRowID}">Delete</button></td>`);
+    $('#employee-table').append(`<tr id="${emp.employeeRowID}"></tr>`)
+    $(`#${emp.employeeRowID}`).append(`<td>${emp.firstName}</td>`);
+    $(`#${emp.employeeRowID}`).append(`<td>${emp.lastName}</td>`);
+    $(`#${emp.employeeRowID}`).append(`<td>${emp.id}</td>`);
+    $(`#${emp.employeeRowID}`).append(`<td>${emp.title}</td>`);
+    $(`#${emp.employeeRowID}`).append(`<td>$${emp.annualSalary}</td>`);
+    $(`#${emp.employeeRowID}`).append(`<td><button class="emp-delete-button" id="d${emp.index}">Delete</button></td>`);
+    // emp.deleteEvent = $(`#delete-${emp.employeeRowID}`).click(function(){
+    //     console.log('delete' + this);
+    // })
+
 }
 
 function printAllEmployees(array) {
@@ -66,6 +69,11 @@ function printAllEmployees(array) {
     let monthlySpent = 0;
 
     for (let i = 0; i < array.length; i++) {
+        // array[i].deleteEvent = $(`#delete-${array[i].employeeRowID}`).click(function(){
+        //     console.log('delete' + this);
+        // });
+        array[i].index = i; //gives each employee object a property equal to it's array index
+
         displayEmployee(array[i]);
 
         yearlySpent += Number(array[i].annualSalary);
@@ -78,6 +86,11 @@ function printAllEmployees(array) {
     if(monthlySpent > 20000) {
         $('#monthly-expense-text').addClass('expensive');
     }
+
+    $('.emp-delete-button').click(function() {
+        console.log('delete', this.id.substring(1));
+        deleteEmployee(this.id.substring(1));
+    });
 }
 
 function addNewEmployee() {
@@ -87,7 +100,11 @@ function addNewEmployee() {
         lastName: $('#last-name-in').val(),
         id: $('#id-in').val(),
         title: $('#title-in').val(),
-        annualSalary: $('#salary-in').val()
+        annualSalary: $('#salary-in').val(),
+        employeeRowID: $('#first-name-in').val() + $('#last-name-in').val() + $('#id-in').val() //generates ID to be used as a multi-purpose selector
+        // deleteEvent:  $(`#delete-${employeeRowID}`).click(function(){
+        //     console.log('delete' + this);
+        // })
     }
 
     employees.push(newEmp);
@@ -98,5 +115,10 @@ function addNewEmployee() {
     $('#title-in').val('');
     $('#salary-in').val('');
 
+    printAllEmployees(employees);
+}
+
+function deleteEmployee(index) {
+    employees.splice(index, 1);
     printAllEmployees(employees);
 }
