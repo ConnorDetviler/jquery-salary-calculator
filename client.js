@@ -49,15 +49,15 @@ function documentReady() {
 }
 
 function displayEmployee(emp) {
-//creates table data tags with the values of the properties of the employee and appends them to the table row
+    //creates table data tags with the values of the properties of the employee and appends them to the table row
     $('#employee-table').append(`<tr id="${emp.employeeRowID}"></tr>`)
     $(`#${emp.employeeRowID}`).append(`<td>${emp.firstName}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td>${emp.lastName}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td>${emp.id}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td>${emp.title}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td>$${emp.annualSalary}</td>`);
-    $(`#${emp.employeeRowID}`).append(`<td><button class="emp-delete-button" id="d${emp.index}">Delete</button></td>`); 
-    //id of each delete button contains the index number of it's corrosponding employee in the array
+    $(`#${emp.employeeRowID}`).append(`<td><button class="emp-delete-button" data-index=${emp.index}>Delete</button></td>`); 
+    //data given to delete button contains the index number of it's corrosponding employee in the array
 }
 
 function printAllEmployees(array) {
@@ -86,7 +86,7 @@ function printAllEmployees(array) {
     }
 
     $('.emp-delete-button').click(function() {
-        deleteEmployee(this.id.substring(1)); //substring removes letter at beginning that is there because I don't like attributes that are just a single digit number
+        deleteEmployee(this.dataset.index);
     });
 }
 
