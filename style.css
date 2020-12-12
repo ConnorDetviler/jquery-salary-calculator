@@ -1,0 +1,52 @@
+body {
+    background-color: #eef9f9;
+}
+/* copied from bootstrap 4.5 */
+.jumbotron {
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    /* background-color: var(--bs-dark); */
+    background-color: #6792b8;
+    border-radius: .3rem;  
+    text-align: center;
+    /* color: var(--bs-light); */
+    color: rgb(255, 255, 255);
+}
+
+/* copied from bootstrap 4.5 */
+.form-row { 
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.table-bordered {
+    border-color: #b3b3b3;
+}
+
+.submit-button {
+    color: #fff;
+    background-color: #6792b8;
+    border-color: #6792b8;
+}
+
+/* overriding bootstrap width settings to make the page narrower at higher resolutions */
+/* I get the feeling there's a better way to do this, but I couldn't find it */
+@media (min-width: 992px) {
+    .container{
+        max-width: 800px;
+    }
+}
+@media (min-width: 1200px) {
+    .container{
+        max-width: 800px;
+    }
+}
+@media (min-width: 1400px) {
+    .container{
+        max-width: 800px;
+    }
+}
