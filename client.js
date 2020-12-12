@@ -1,36 +1,37 @@
 let employees = [
-    // {
-    //     firstName: 'Jen',
-    //     lastName: 'Barber',
-    //     id: '4521',
-    //     title: 'Team Lead',
-    //     annualSalary: '80000'
-    // },
-    // {
-    //     firstName: 'Maurice',
-    //     lastName: 'Moss',
-    //     id: '8724',
-    //     title: 'Support Team',
-    //     annualSalary: '58000'
-    // },
-    // {
-    //     firstName: 'Roy',
-    //     lastName: 'Smith',
-    //     id: '9623',
-    //     title: 'Quality Assurance',
-    //     annualSalary: '48000'
-    // },
-    // {
-    //     firstName: 'Harry',
-    //     lastName: 'Jenson',
-    //     id: '4973',
-    //     title: 'Team Lead',
-    //     annualSalary: '80000'
-    // }
+    {
+        firstName: 'Jen',
+        lastName: 'Barber',
+        id: '4521',
+        title: 'Team Lead',
+        annualSalary: '80000',
+        employeeRowID: 'JenBarber4521'
+    },
+    {
+        firstName: 'Maurice',
+        lastName: 'Moss',
+        id: '8724',
+        title: 'Support Team',
+        annualSalary: '58000',
+        employeeRowID: 'MauriceMoss8724'
+    },
+    {
+        firstName: 'Roy',
+        lastName: 'Smith',
+        id: '9623',
+        title: 'Quality Assurance',
+        annualSalary: '48000',
+        employeeRowID: 'RoySmith9623'
+    },
+    {
+        firstName: 'Harry',
+        lastName: 'Jenson',
+        id: '4973',
+        title: 'Team Lead',
+        annualSalary: '80000',
+        employeeRowID: 'HarryJenson4973'
+    }
 ];
-
-// let yearlySpent = 0;
-// let monthlySpent = 0;
 
 $(readyNow);
 
@@ -48,18 +49,15 @@ function documentReady() {
 }
 
 function displayEmployee(emp) {
-
+//creates table data tags with the values of the properties of the employee and appends them to the table row
     $('#employee-table').append(`<tr id="${emp.employeeRowID}"></tr>`)
     $(`#${emp.employeeRowID}`).append(`<td>${emp.firstName}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td>${emp.lastName}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td>${emp.id}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td>${emp.title}</td>`);
     $(`#${emp.employeeRowID}`).append(`<td>$${emp.annualSalary}</td>`);
-    $(`#${emp.employeeRowID}`).append(`<td><button class="emp-delete-button" id="d${emp.index}">Delete</button></td>`);
-    // emp.deleteEvent = $(`#delete-${emp.employeeRowID}`).click(function(){
-    //     console.log('delete' + this);
-    // })
-
+    $(`#${emp.employeeRowID}`).append(`<td><button class="emp-delete-button" id="d${emp.index}">Delete</button></td>`); 
+    //id of each delete button contains the index number of it's corrosponding employee in the array
 }
 
 function printAllEmployees(array) {
@@ -69,10 +67,8 @@ function printAllEmployees(array) {
     let monthlySpent = 0;
 
     for (let i = 0; i < array.length; i++) {
-        // array[i].deleteEvent = $(`#delete-${array[i].employeeRowID}`).click(function(){
-        //     console.log('delete' + this);
-        // });
-        array[i].index = i; //gives each employee object a property equal to it's array index
+
+        array[i].index = i; //gives each employee object a property equal to it's own array index
 
         displayEmployee(array[i]);
 
@@ -88,8 +84,7 @@ function printAllEmployees(array) {
     }
 
     $('.emp-delete-button').click(function() {
-        console.log('delete', this.id.substring(1));
-        deleteEmployee(this.id.substring(1));
+        deleteEmployee(this.id.substring(1)); //substring removes letter at beginning that is required for html id attribute
     });
 }
 
@@ -101,10 +96,7 @@ function addNewEmployee() {
         id: $('#id-in').val(),
         title: $('#title-in').val(),
         annualSalary: $('#salary-in').val(),
-        employeeRowID: $('#first-name-in').val() + $('#last-name-in').val() + $('#id-in').val() //generates ID to be used as a multi-purpose selector
-        // deleteEvent:  $(`#delete-${employeeRowID}`).click(function(){
-        //     console.log('delete' + this);
-        // })
+        employeeRowID: $('#first-name-in').val() + $('#last-name-in').val() + $('#id-in').val() //generates ID for employee's table row
     }
 
     employees.push(newEmp);
