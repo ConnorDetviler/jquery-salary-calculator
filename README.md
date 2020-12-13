@@ -1,4 +1,4 @@
-## jQuery Salaray Calculator
+## jQuery Salary Calculator
 
 ## Description
 
