@@ -2,9 +2,15 @@ body {
     background-color: #eef9f9;
 }
 
-.expensive {
-    background-color: red;
+#monthly-expense-text {
+    padding: 6px;
+    background-color: #6792b8;
+    border-radius: .3rem;  
     color: white;
+}
+
+.expensive {
+    background-color: #dc3545 !important;
 }
 /* copied from bootstrap 4.5 */
 .jumbotron {

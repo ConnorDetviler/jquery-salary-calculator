@@ -1,9 +1,20 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# PROJECT NAME
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+_Duration: Weekend Challenge_
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+This app allows you to log multiple employees at your company and calculate the monthly cost of their collective annual salaries.
+
+
+## Built With
+
+jQuery v3.5.1 & Bootstrap v5.0.0-beta1
+
+
+
+## Acknowledgement
+Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality.
+
+## Support
+If you have suggestions or issues, please email me at connor.detviler@gmail.com
