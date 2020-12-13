@@ -1,4 +1,4 @@
-# PROJECT NAME
+## jQuery Salaray Calculator
 
 ## Description
 
